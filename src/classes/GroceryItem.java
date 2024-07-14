@@ -23,7 +23,7 @@ public class GroceryItem extends InventoryItem {
 
     @Override
     public String getDescription() {
-        return "Grocery Item: " + category + ", Best before " + expirationDate;
+        return name + ": " + category + ", Best before " + expirationDate;
     }
 
     @Override

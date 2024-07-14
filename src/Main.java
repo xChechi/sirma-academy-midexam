@@ -1,4 +1,5 @@
 import classes.ElectronicsItem;
+import classes.FragileItem;
 import classes.GroceryItem;
 import classes.ItemType;
 
@@ -38,7 +39,7 @@ public class Main {
                 "2",
                 24,
                 ItemType.GROCERY,
-                LocalDate.of(2024, 7, 22));
+                LocalDate.of(2024, 7, 17));
 
         System.out.println("=======================");
         System.out.println(apple.calculateValue());
@@ -50,5 +51,27 @@ public class Main {
         System.out.println(apple.getQuantity());
         System.out.println(apple.isBreakable());
         System.out.println(apple.isPerishable());
+
+        FragileItem glass = new FragileItem(
+                "Crystal Glass",
+                "Utensils",
+                true,
+                false,
+                8.25,
+                "3",
+                12,
+                ItemType.FRAGILE,
+                0.120);
+
+        System.out.println("=======================");
+        System.out.println(glass.calculateValue());
+        System.out.println(glass.getDescription());
+        System.out.println(glass.getDetails());
+        System.out.println(glass.getCategory());
+        System.out.println(glass.getPrice());
+        System.out.println(glass.getItemId());
+        System.out.println(glass.getQuantity());
+        System.out.println(glass.isBreakable());
+        System.out.println(glass.isPerishable());
     }
 }
