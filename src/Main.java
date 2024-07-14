@@ -9,6 +9,7 @@ public class Main {
 
         System.out.println("Hello world!");
         ElectronicsItem tv = new ElectronicsItem(
+                "Samsung NX50SA",
                 "white technic",
                 true,
                 false,
@@ -29,7 +30,8 @@ public class Main {
         System.out.println(tv.isPerishable());
 
         GroceryItem apple = new GroceryItem(
-                "Apple",
+                "apple",
+                "Apples",
                 true,
                 true,
                 1.29,

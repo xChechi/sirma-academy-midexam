@@ -5,8 +5,8 @@ public abstract class InventoryItem extends AbstractItem {
     protected int quantity;
     protected ItemType itemType;
 
-    public InventoryItem(String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType) {
-        super(category, breakable, perishable, price);
+    public InventoryItem(String name, String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType) {
+        super(name, category, breakable, perishable, price);
         this.itemId = itemId;
         this.quantity = quantity;
         this.itemType = itemType;

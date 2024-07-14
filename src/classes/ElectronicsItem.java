@@ -3,8 +3,8 @@ package classes;
 public class ElectronicsItem extends InventoryItem {
     private int warrantyPeriod;
 
-    public ElectronicsItem(String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType, int warrantyPeriod) {
-        super(category, breakable, perishable, price, itemId, quantity, itemType);
+    public ElectronicsItem(String name, String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType, int warrantyPeriod) {
+        super(name, category, breakable, perishable, price, itemId, quantity, itemType);
         this.warrantyPeriod = warrantyPeriod;
     }
 
@@ -15,7 +15,7 @@ public class ElectronicsItem extends InventoryItem {
 
     @Override
     public String getDetails() {
-        return "Product ID " + itemId + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
+        return name + ": Product ID " + itemId + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
     }
 
     @Override

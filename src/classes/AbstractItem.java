@@ -3,12 +3,14 @@ package classes;
 import interfaces.*;
 
 public abstract class AbstractItem implements Item, Categorizable, Breakable, Perishable, Sellable {
+    protected String name;
     protected String category;
     protected boolean breakable;
     protected boolean perishable;
     protected double price;
 
-    public AbstractItem(String category, boolean breakable, boolean perishable, double price) {
+    public AbstractItem(String name, String category, boolean breakable, boolean perishable, double price) {
+        this.name = name;
         this.category = category;
         this.breakable = breakable;
         this.perishable = perishable;
@@ -60,5 +62,13 @@ public abstract class AbstractItem implements Item, Categorizable, Breakable, Pe
     @Override
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
