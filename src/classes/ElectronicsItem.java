@@ -15,7 +15,7 @@ public class ElectronicsItem extends InventoryItem {
 
     @Override
     public String getDetails() {
-        return "Product ID " + itemId + ", Category" + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
+        return "Product ID " + itemId + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
     }
 
     @Override
@@ -33,8 +33,4 @@ public class ElectronicsItem extends InventoryItem {
         return (double) Math.round(price * quantity * 1.1 * 100) / 100;
     }
 
-    @Override
-    public double getPrice() {
-        return price;
-    }
 }
