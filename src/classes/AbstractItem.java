@@ -38,7 +38,7 @@ public abstract class AbstractItem implements Item, Categorizable, Breakable, Pe
 
     @Override
     public double calculateValue() {
-        return 0;
+        return price;
     }
 
     @Override
