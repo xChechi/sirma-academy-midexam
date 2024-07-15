@@ -2,6 +2,7 @@ package classes.menu;
 
 import classes.inventory.*;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InventoryCli {
+    private static final String FILENAME = "inventory.txt";
     private List<InventoryItem> items = new ArrayList<>();
 
     public void displayMenu() {
@@ -19,7 +21,9 @@ public class InventoryCli {
         System.out.println("3. List Items");
         System.out.println("4. Categorize Items");
         System.out.println("5. Place Order");
-        System.out.println("6. Exit");
+        System.out.println("6. Save Progress");
+        System.out.println("7. Load Saved Data");
+        System.out.println("8. Exit");
     }
 
     public void start() {
@@ -44,6 +48,14 @@ public class InventoryCli {
                     placeOrder(scanner);
                     break;
                 case 6:
+                    saveProgress();
+                    break;
+                case 7:
+                    loadInventory();
+                    break;
+                case 8:
+                    saveProgress();
+                    System.out.println("Exiting...");
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -148,6 +160,89 @@ public class InventoryCli {
     private void placeOrder(Scanner scanner) {
         // Implementation for placing an order
     }
+
+    private void saveProgress() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILENAME))) {
+            for (InventoryItem item : items) {
+                writer.print(item.getClass().getSimpleName() + ",");
+                writer.print(item.getName() + ",");
+                writer.print(item.getCategory() + ",");
+                writer.print(item.getPrice() + ",");
+                writer.print(item.getQuantity() + ",");
+                writer.print(item.getItemId());
+
+                if (item instanceof GroceryItem) {
+                    writer.println("," + ((GroceryItem) item).getExpirationDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                } else if (item instanceof ElectronicsItem) {
+                    writer.println("," + ((ElectronicsItem) item).getWarrantyPeriod());
+                } else if (item instanceof FragileItem) {
+                    writer.println("," + ((FragileItem) item).getWeight());
+                } else {
+                    writer.println();
+                }
+            }
+            System.out.println("Progress saved successfully to " + FILENAME);
+        } catch (IOException e) {
+            System.out.println("Error saving progress: " + e.getMessage());
+        }
+    }
+
+
+    private void loadInventory() {
+        items.clear();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILENAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length < 6) {
+                    System.out.println("Invalid data format: " + line);
+                    continue;
+                }
+
+                String itemTypeStr = parts[0].trim();
+                String name = parts[1].trim();
+                String category = parts[2].trim();
+                double price = Double.parseDouble(parts[3].trim());
+                int quantity = Integer.parseInt(parts[4].trim());
+                //String itemId = parts[5].trim();
+
+                switch (itemTypeStr) {
+                    case "ElectronicsItem":
+                        if (parts.length < 7) {
+                            System.out.println("Invalid data format for ElectronicsItem: " + line);
+                            continue;
+                        }
+                        int warrantyPeriod = Integer.parseInt(parts[6].trim());
+                        items.add(new ElectronicsItem(name, category, price, quantity, ItemType.ELECTRONICS, warrantyPeriod));
+                        break;
+                    case "GroceryItem":
+                        if (parts.length < 7) {
+                            System.out.println("Invalid data format for GroceryItem: " + line);
+                            continue;
+                        }
+                        LocalDate expirationDate = LocalDate.parse(parts[6].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        items.add(new GroceryItem(name, category, price, quantity, ItemType.GROCERY, expirationDate));
+                        break;
+                    case "FragileItem":
+                        if (parts.length < 7) {
+                            System.out.println("Invalid data format for FragileItem: " + line);
+                            continue;
+                        }
+                        double weight = Double.parseDouble(parts[6].trim());
+                        items.add(new FragileItem(name, category, price, quantity, ItemType.FRAGILE, weight));
+                        break;
+                    default:
+                        System.out.println("Unknown item type: " + itemTypeStr);
+                }
+            }
+            System.out.println("Inventory loaded successfully from " + FILENAME);
+        } catch (IOException e) {
+            System.out.println("Error loading inventory: " + e.getMessage());
+        }
+    }
+
+
+
 
 
 }

@@ -33,4 +33,7 @@ public class ElectronicsItem extends InventoryItem {
         return (double) Math.round(price * quantity * 1.1 * 100) / 100;
     }
 
+    public int getWarrantyPeriod() {
+        return warrantyPeriod;
+    }
 }

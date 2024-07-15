@@ -1,0 +1,2 @@
+ElectronicsItem,Samsung,phones,122.0,1,ITEM-1,12
+ElectronicsItem,nokia,phones,444.0,2,ITEM-2,24

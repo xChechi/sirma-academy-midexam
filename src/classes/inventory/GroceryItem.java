@@ -47,4 +47,8 @@ public class GroceryItem extends InventoryItem {
 
         return Math.round(value * 100) / 100.0;
     }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
 }
