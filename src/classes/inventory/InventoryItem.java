@@ -29,10 +29,6 @@ public abstract class InventoryItem extends AbstractItem {
         return itemType;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

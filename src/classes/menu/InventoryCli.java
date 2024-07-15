@@ -64,7 +64,7 @@ public class InventoryCli {
     }
 
     private void addItem(Scanner scanner) {
-        InventoryItem newItem = null;
+        InventoryItem newItem;
         try {
             scanner.nextLine();
 
@@ -158,7 +158,7 @@ public class InventoryCli {
     }
 
     private void placeOrder(Scanner scanner) {
-        // Implementation for placing an order
+
     }
 
     private void saveProgress() {
@@ -171,14 +171,12 @@ public class InventoryCli {
                 writer.print(item.getQuantity() + ",");
                 writer.print(item.getItemId());
 
-                if (item instanceof GroceryItem) {
-                    writer.println("," + ((GroceryItem) item).getExpirationDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                } else if (item instanceof ElectronicsItem) {
-                    writer.println("," + ((ElectronicsItem) item).getWarrantyPeriod());
-                } else if (item instanceof FragileItem) {
-                    writer.println("," + ((FragileItem) item).getWeight());
-                } else {
-                    writer.println();
+                switch (item) {
+                    case GroceryItem groceryItem ->
+                            writer.println("," + groceryItem.getExpirationDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                    case ElectronicsItem electronicsItem -> writer.println("," + electronicsItem.getWarrantyPeriod());
+                    case FragileItem fragileItem -> writer.println("," + fragileItem.getWeight());
+                    default -> writer.println();
                 }
             }
             System.out.println("Progress saved successfully to " + FILENAME);
