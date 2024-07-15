@@ -1,4 +1,4 @@
-package classes;
+package classes.inventory;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -6,8 +6,8 @@ import java.time.temporal.ChronoUnit;
 public class GroceryItem extends InventoryItem {
     private LocalDate expirationDate;
 
-    public GroceryItem(String name, String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType, LocalDate expirationDate) {
-        super(name, category, breakable, perishable, price, itemId, quantity, itemType);
+    public GroceryItem(String name, String category, double price, int quantity, ItemType itemType, LocalDate expirationDate) {
+        super(name, category, false, true, price, quantity, itemType);
         this.expirationDate = expirationDate;
     }
 
@@ -18,7 +18,7 @@ public class GroceryItem extends InventoryItem {
 
     @Override
     public String getDetails() {
-        return name + ": Product ID " + itemId + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
+        return "ID: " + itemId + " " + name + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity + ", Expiration Date: " + expirationDate;
     }
 
     @Override

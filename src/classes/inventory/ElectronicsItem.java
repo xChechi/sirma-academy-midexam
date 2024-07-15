@@ -1,10 +1,10 @@
-package classes;
+package classes.inventory;
 
 public class ElectronicsItem extends InventoryItem {
     private int warrantyPeriod;
 
-    public ElectronicsItem(String name, String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType, int warrantyPeriod) {
-        super(name, category, breakable, perishable, price, itemId, quantity, itemType);
+    public ElectronicsItem(String name, String category, double price, int quantity, ItemType itemType, int warrantyPeriod) {
+        super(name, category, true, false, price, quantity, itemType);
         this.warrantyPeriod = warrantyPeriod;
     }
 
@@ -15,12 +15,12 @@ public class ElectronicsItem extends InventoryItem {
 
     @Override
     public String getDetails() {
-        return name + ": Product ID " + itemId + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
+        return "ID: " + itemId + " " + name + ", Category " + category + ", Type: " + itemType.toString() + ", Price: " + price + ", Quantity: " + quantity;
     }
 
     @Override
     public String getDescription() {
-        return "Warranty period is " + warrantyPeriod + " months";
+        return name + ": Warranty period is " + warrantyPeriod + " months";
     }
 
     @Override

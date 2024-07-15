@@ -1,4 +1,4 @@
-package classes;
+package classes.inventory;
 
 public enum ItemType {
     ELECTRONICS,

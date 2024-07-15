@@ -1,4 +1,4 @@
-package classes;
+package classes.inventory;
 
 import interfaces.*;
 

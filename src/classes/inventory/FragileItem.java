@@ -1,10 +1,10 @@
-package classes;
+package classes.inventory;
 
 public class FragileItem extends InventoryItem {
     private double weight;
 
-    public FragileItem(String name, String category, boolean breakable, boolean perishable, double price, String itemId, int quantity, ItemType itemType, double weight) {
-        super(name, category, breakable, perishable, price, itemId, quantity, itemType);
+    public FragileItem(String name, String category, double price, int quantity, ItemType itemType, double weight) {
+        super(name, category, true, false, price, quantity, itemType);
         this.weight = weight;
     }
 
