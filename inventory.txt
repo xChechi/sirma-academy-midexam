@@ -1,2 +1,5 @@
 ElectronicsItem,Samsung,phones,122.0,1,ITEM-1,12
+ElectronicsItem,adidas,laptop,111.0,5,ITEM-5,12
+ElectronicsItem,iphone,musaka,333.0,3,ITEM-3,36
 ElectronicsItem,nokia,phones,444.0,2,ITEM-2,24
+ElectronicsItem,sony,tv,5555.0,2,ITEM-4,12

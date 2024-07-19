@@ -6,6 +6,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,8 @@ public class InventoryCli {
         System.out.println("5. Place Order");
         System.out.println("6. Save Progress");
         System.out.println("7. Load Saved Data");
-        System.out.println("8. Exit");
+        System.out.println("8. Sort items by name");
+        System.out.println("9. Exit");
     }
 
     public void start() {
@@ -54,9 +56,13 @@ public class InventoryCli {
                     loadInventory();
                     break;
                 case 8:
+                    sortItemsByName();
+                    break;
+                case 9:
                     saveProgress();
                     System.out.println("Exiting...");
                     return;
+
                 default:
                     System.out.println("Invalid choice");
             }
@@ -239,6 +245,12 @@ public class InventoryCli {
         }
     }
 
+    private void sortItemsByName() {
+        //items.sort(Comparator.comparing(InventoryItem::getName));
+        items.sort(Comparator.comparing(item -> item.getName().toLowerCase()));
+        System.out.println("Items sorted by name:");
+        listItems();
+    }
 
 
 
